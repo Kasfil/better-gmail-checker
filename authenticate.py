@@ -40,6 +40,7 @@ class BetterGmailChecker:
                 self._authenticate()
 
         # execute API call
+        self._call_api()
 
     def _write_credentials(self, credential: str) -> None:
         """Write given credential json to file
@@ -87,4 +88,4 @@ class BetterGmailChecker:
         gmail = build('gmail', 'v1', credentials = self._credential)
         # get API response
         response = gmail.users().labels().get(userId = 'me', id = self.label_id).execute() # pylint: disable=no-member
-        self.api_response = json.loads(response)
+        self.api_response = response
