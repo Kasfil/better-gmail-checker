@@ -7,7 +7,6 @@ Functions:
     authenticate
 """
 import os
-import json
 from typing import Dict
 from pathlib import Path
 from google.oauth2.credentials import Credentials
@@ -17,6 +16,11 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 
 class BetterGmailChecker:
+    """Better Gmail Checker class
+
+    Main class of this module. Does the authentication and
+    fetch the API for you.
+    """
     # public properties
     label_id: str
     api_response: Dict
@@ -89,3 +93,23 @@ class BetterGmailChecker:
         # get API response
         response = gmail.users().labels().get(userId = 'me', id = self.label_id).execute() # pylint: disable=no-member
         self.api_response = response
+
+    def label_name(self):
+        """Get label name from given id"""
+        return self.api_response.get('name')
+
+    def messages_total(self):
+        """Get message total in API response"""
+        return self.api_response.get('messagesTotal')
+
+    def messages_unread(self):
+        """Get message unread in API response"""
+        return self.api_response.get('messagesUnread')
+
+    def threads_total(self):
+        """Get Threads total in API response"""
+        return self.api_response.get('threadsTotal')
+
+    def threads_unread(self):
+        """Get Threads unread in API response"""
+        return self.api_response.get('threadsUnread')
