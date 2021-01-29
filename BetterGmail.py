@@ -3,7 +3,7 @@ from libqtile.widget import base
 from pathlib import Path
 from .Auth import BetterGmailChecker
 
-class BetterGmail(base.ThreadedPollText):
+class BetterGmail(base.ThreadPoolText):
     """Better gmail qtile bar widget"""
     orientations = base.ORIENTATION_HORIZONTAL
     defaults = [
@@ -15,9 +15,10 @@ class BetterGmail(base.ThreadedPollText):
     ]
 
     def __init__(self, **config) -> None:
-        base.ThreadedPollText.__init__(self, '', **config)
+        base.ThreadPoolText.__init__(self, '', **config)
         self.add_defaults(BetterGmail.defaults)
         self.first_attemp = True
+        self.gmail_status = None
 
     def get_update(self):
         """main get gmail status"""
