@@ -1,4 +1,6 @@
-"""Module to handle authentication.
+"""auth.py
+
+Module to handle authentication.
 
 Module handles to authentication and refresh token or credential.
 
@@ -88,10 +90,11 @@ class BetterGmailChecker:
         self._write_credentials(credential.to_json())
 
     def _call_api(self):
+        """fetch api from server"""
         # build service
         gmail = build('gmail', 'v1', credentials = self._credential)
         # get API response
-        response = gmail.users().labels().get(userId = 'me', id = self.label_id).execute() # pylint: disable=no-member
+        response = gmail.users().labels().get(userId = 'me', id = self.label_id).execute() # pylint: disable=E1101
         self.api_response = response
 
     def label_name(self):

@@ -1,7 +1,12 @@
-"""Better gmail"""
-from libqtile.widget import base
+"""better_gmail.py
+
+Better gmail module
+
+Handle integration to qtile bar through widget
+"""
 from pathlib import Path
-from .Auth import BetterGmailChecker
+from libqtile.widget import base #pylint: disable=E0401
+from .auth import BetterGmailChecker #pylint: disable=E0402
 
 class BetterGmail(base.ThreadPoolText):
     """Better gmail qtile bar widget"""
@@ -39,6 +44,7 @@ class BetterGmail(base.ThreadPoolText):
             self.layout.colour = self.color_no_unread
 
     def poll(self):
+        """Main function to interact with qtile bar through widget"""
         # check if credentials.json exists
         file_dir = Path(__file__).resolve().parent
         credential_file = Path(file_dir, 'credentials.json').resolve()
