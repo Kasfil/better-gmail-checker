@@ -1,0 +1,12 @@
+[BASIC]
+
+module-naming-style = camelCase
+const-naming-style = UPPER_CASE
+class-naming-style = camelCase
+function-naming-style = camelCase
+method-naming-style = camelCase
+attr-naming-style = PascalCase
+argument-naming-style = camelCase
+variable-naming-style = PascalCase
+class-attribute-naming-style = PascalCase
+inlinevar-naming-style = camelCase
